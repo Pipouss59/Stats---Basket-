@@ -1,369 +1,57 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head> ... </head>
-<body> ... </body>
-</html>
-
-<!-- Exports -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
-
-<style>
-:root{
-  --accent:#ff5a00;
-  --dark:#071428;
-  --card:#fff;
-  --muted:#6b7280;
-  --bg1:#071428;
-  --bg2:#0d2a4a;
-  --glass: rgba(255,255,255,0.06);
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
-  background: linear-gradient(180deg,var(--bg1),var(--bg2));
-  color:#fff;
-  -webkit-font-smoothing:antialiased;
-}
-.container{max-width:1200px;margin:18px auto;padding:12px}
-.header{
-  display:flex;justify-content:space-between;align-items:center;
-  background: linear-gradient(90deg,var(--accent),#ff8f3d);
-  padding:12px;border-radius:10px;
-  box-shadow:0 6px 20px rgba(0,0,0,0.35);
-}
-.header h1{margin:0;font-size:18px}
-.controls{display:flex;gap:8px;align-items:center}
-.btn{
-  border:none;padding:8px 10px;border-radius:8px;cursor:pointer;font-weight:700;
-  background:rgba(255,255,255,0.06);color:#fff;
-}
-.btn.primary{background:var(--dark);color:#fff}
-.btn.accent{background:var(--accent);color:#fff}
-.btn.danger{background:#d9534f;color:#fff}
-.top-card{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
-.card{
-  background:var(--card);color:var(--dark);border-radius:12px;padding:12px;
-  box-shadow:0 8px 30px rgba(2,6,23,0.4);flex:1;min-width:260px;
-}
-.row{display:flex;gap:12px;flex-wrap:wrap}
-.team-header{display:flex;justify-content:space-between;align-items:center}
-.input{padding:8px;border-radius:8px;border:1px solid #e6e6e6;width:160px}
-.small{width:80px}
-.players{margin-top:10px;max-height:56vh;overflow:auto}
-.player{background:#fff;border-radius:10px;padding:10px;margin-bottom:8px;border:1px solid #eee}
-.player h4{margin:0 0 6px 0;display:flex;justify-content:space-between}
-.stats{font-size:13px;color:#666;margin-bottom:8px}
-.controls-wrap{display:flex;flex-wrap:wrap;gap:6px}
-.icon-btn{padding:6px 8px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
-.icon-btn.positive{background:#16a34a;color:#fff} /* green */
-.icon-btn.negative{background:#ef4444;color:#fff} /* red */
-.icon-btn.neutral{background:#475569;color:#fff}
-.summary{margin-top:12px}
-.summary table{width:100%;border-collapse:collapse}
-.summary th,.summary td{padding:8px;border-bottom:1px solid #eee;text-align:left;color:#111}
-.footer{text-align:center;color:#d1d5db;margin-top:12px}
-
-/* Responsive */
-@media (max-width:900px){
-  .row{flex-direction:column}
-  .header{flex-direction:column;gap:8px;align-items:flex-start}
-}
-</style>
+<head>
+  <meta charset="UTF-8">
+  <title>Stats Basket – Test Github Pages</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #111; color: #fff; }
+    .card {
+      background: #222;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    .btn {
+      padding: 8px 12px;
+      background: #444;
+      border: none;
+      color: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .btn:hover { background: #666; }
+  </style>
 </head>
 <body>
-<div class="container">
-  <div class="header">
-    <h1>🏀 Stats Match — Outil Pro</h1>
-    <div class="controls">
-      <button class="btn primary" id="saveBtn">Sauvegarder</button>
-      <button class="btn accent" id="summaryBtn">Résumé</button>
-      <button class="btn" id="exportCsv">CSV</button>
-      <button class="btn" id="exportXlsx">Excel</button>
-      <button class="btn" id="exportPdf">PDF</button>
-      <button class="btn danger" id="resetBtn">Nouveau match</button>
-    </div>
-  </div>
 
-  <div class="top-card row" style="margin-top:12px">
-    <div class="card" style="flex:1">
-      <div class="team-header">
-        <div>
-          <strong>Équipe A</strong>
-          <div style="color:var(--muted);font-size:13px">Score: <span id="scoreA">0</span></div>
-        </div>
-        <input id="teamAName" class="input" value="Équipe A">
-      </div>
+<h1>🚀 Site Test – GitHub Pages Fonctionnel</h1>
 
-      <div style="display:flex;gap:8px;margin-top:10px;align-items:center">
-        <input id="nameA" class="input" placeholder="Nom joueur">
-        <input id="numA" class="input small" type="number" placeholder="N°">
-        <button class="btn accent" onclick="addPlayer('A')">Ajouter</button>
-      </div>
+<div class="card">
+  <h2>Statistiques Basket</h2>
+  <p>Si tu vois cette page, GitHub Pages fonctionne parfaitement.</p>
+  <p>On pourra ensuite réintégrer :<br>
+    ✔ Chronomètre <br>
+    ✔ Événements (log)<br>
+    ✔ Stats complètes<br>
+    ✔ Résumés + PDF<br>
+    ✔ Interface NBA<br>
+  </p>
+</div>
 
-      <div class="players card" id="playersA" style="margin-top:10px;background:transparent;box-shadow:none;padding:0"></div>
-    </div>
-
-    <div class="card" style="flex:1">
-      <div class="team-header">
-        <div>
-          <strong>Équipe B</strong>
-          <div style="color:var(--muted);font-size:13px">Score: <span id="scoreB">0</span></div>
-        </div>
-        <input id="teamBName" class="input" value="Équipe B">
-      </div>
-
-      <div style="display:flex;gap:8px;margin-top:10px;align-items:center">
-        <input id="nameB" class="input" placeholder="Nom joueur">
-        <input id="numB" class="input small" type="number" placeholder="N°">
-        <button class="btn accent" onclick="addPlayer('B')">Ajouter</button>
-      </div>
-
-      <div class="players card" id="playersB" style="margin-top:10px;background:transparent;box-shadow:none;padding:0"></div>
-    </div>
-  </div>
-
-  <div class="card summary" id="summaryCard" style="display:none">
-    <h3>Résumé du match</h3>
-    <div id="summaryContent"></div>
-  </div>
-
-  <div class="footer">Outil — Sauvegarde automatique (localStorage) — Export CSV / Excel / PDF</div>
+<div class="card">
+  <h2>Test bouton</h2>
+  <button class="btn" onclick="alert('Bouton OK ! Ton site fonctionne correctement.')">
+    Clique moi
+  </button>
 </div>
 
 <script>
-/* ---------- Data model ---------- */
-const STORAGE_KEY = 'stats_basket_pro_v1';
-let data = {
-  teamA: { name: 'Équipe A', players: [] },
-  teamB: { name: 'Équipe B', players: [] },
-  period: 1,
-  scoreA: 0,
-  scoreB: 0
-};
-
-/* Load / Save */
-function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); flashBtn('saveBtn','Sauvegardé'); }
-function load(){
-  const raw = localStorage.getItem(STORAGE_KEY);
-  if(raw){ try { data = JSON.parse(raw); } catch(e){ console.warn('parse err',e); } }
-  document.getElementById('teamAName').value = data.teamA.name;
-  document.getElementById('teamBName').value = data.teamB.name;
-  renderAll();
-}
-setInterval(save,3000);
-window.addEventListener('beforeunload', save);
-
-/* Utility */
-function flashBtn(id,text){
-  const b = document.getElementById(id);
-  const orig = b.textContent;
-  b.textContent = text;
-  setTimeout(()=>b.textContent = orig,900);
-}
-
-/* ---------- Players management ---------- */
-function addPlayer(team){
-  const name = document.getElementById('name'+team).value.trim();
-  const num = document.getElementById('num'+team).value.trim();
-  if(!name || !num){ alert('Nom et numéro requis'); return; }
-  const p = {
-    name, number: num, points: 0,
-    shots1Made:0, shots1Miss:0,
-    shots2Made:0, shots2Miss:0,
-    shots3Made:0, shots3Miss:0,
-    rebounds:0, assists:0, interceptions:0, fouls:0
-  };
-  data['team'+team].players.push(p);
-  document.getElementById('name'+team).value = '';
-  document.getElementById('num'+team).value = '';
-  renderAll(); save();
-}
-function removePlayer(team,index){
-  if(!confirm('Supprimer ce joueur ?')) return;
-  data['team'+team].players.splice(index,1);
-  renderAll(); save();
-}
-
-/* ---------- Shots & Stats (± for correction) ---------- */
-function adjustShot(team,index,type,deltaMade=0,deltaMiss=0){
-  const p = data['team'+team].players[index];
-  if(!p) return;
-  if(type===1){ p.shots1Made += deltaMade; p.shots1Miss += deltaMiss; data['score'+team] += deltaMade*1; p.points += deltaMade*1; }
-  if(type===2){ p.shots2Made += deltaMade; p.shots2Miss += deltaMiss; data['score'+team] += deltaMade*2; p.points += deltaMade*2; }
-  if(type===3){ p.shots3Made += deltaMade; p.shots3Miss += deltaMiss; data['score'+team] += deltaMade*3; p.points += deltaMade*3; }
-  // clamp non-negative
-  ['shots1Made','shots1Miss','shots2Made','shots2Miss','shots3Made','shots3Miss','points'].forEach(k=>{ if(p[k]<0) p[k]=0; });
-  if(data['score'+team] < 0) data['score'+team] = 0;
-  renderAll(); save();
-}
-function adjustStat(team,index,stat,delta){
-  const p = data['team'+team].players[index];
-  if(!p) return;
-  p[stat] += delta;
-  if(p[stat] < 0) p[stat] = 0;
-  renderAll(); save();
-}
-
-/* ---------- Render UI ---------- */
-function renderAll(){
-  renderTeam('A'); renderTeam('B');
-  document.getElementById('scoreA').textContent = data.scoreA || 0;
-  document.getElementById('scoreB').textContent = data.scoreB || 0;
-  document.getElementById('teamAName').value = data.teamA.name;
-  document.getElementById('teamBName').value = data.teamB.name;
-}
-function renderTeam(team){
-  const container = document.getElementById('players'+team);
-  container.innerHTML = '';
-  const players = data['team'+team].players;
-  players.forEach((p, i) => {
-    const att1 = p.shots1Made + p.shots1Miss;
-    const att2 = p.shots2Made + p.shots2Miss;
-    const att3 = p.shots3Made + p.shots3Miss;
-    const pct1 = att1 ? Math.round(p.shots1Made / att1 * 100) : 0;
-    const pct2 = att2 ? Math.round(p.shots2Made / att2 * 100) : 0;
-    const pct3 = att3 ? Math.round(p.shots3Made / att3 * 100) : 0;
-
-    const div = document.createElement('div');
-    div.className = 'player';
-    div.innerHTML = `
-      <h4>${p.number} — ${p.name} <span style="font-weight:700;color:#374151">Points: ${p.points}</span></h4>
-      <div class="stats">1pt: ${p.shots1Made}/${att1} (${pct1}%) • 2pt: ${p.shots2Made}/${att2} (${pct2}%) • 3pt: ${p.shots3Made}/${att3} (${pct3}%)</div>
-      <div class="controls-wrap">
-        <!-- 1pt -->
-        <button class="icon-btn positive" title="+1 marqué" onclick="adjustShot('${team}',${i},1,1,0)">➕✔</button>
-        <button class="icon-btn neutral" title="-1 marqué" onclick="adjustShot('${team}',${i},1,-1,0)">➖✔</button>
-        <button class="icon-btn negative" title="+1 raté" onclick="adjustShot('${team}',${i},1,0,1)">➕✖</button>
-        <button class="icon-btn neutral" title="-1 raté" onclick="adjustShot('${team}',${i},1,0,-1)">➖✖</button>
-
-        <!-- 2pt -->
-        <button class="icon-btn positive" title="+2 marqué" onclick="adjustShot('${team}',${i},2,1,0)">➕✔</button>
-        <button class="icon-btn neutral" title="-2 marqué" onclick="adjustShot('${team}',${i},2,-1,0)">➖✔</button>
-        <button class="icon-btn negative" title="+2 raté" onclick="adjustShot('${team}',${i},2,0,1)">➕✖</button>
-        <button class="icon-btn neutral" title="-2 raté" onclick="adjustShot('${team}',${i},2,0,-1)">➖✖</button>
-
-        <!-- 3pt -->
-        <button class="icon-btn positive" title="+3 marqué" onclick="adjustShot('${team}',${i},3,1,0)">➕✔</button>
-        <button class="icon-btn neutral" title="-3 marqué" onclick="adjustShot('${team}',${i},3,-1,0)">➖✔</button>
-        <button class="icon-btn negative" title="+3 raté" onclick="adjustShot('${team}',${i},3,0,1)">➕✖</button>
-        <button class="icon-btn neutral" title="-3 raté" onclick="adjustShot('${team}',${i},3,0,-1)">➖✖</button>
-
-        <!-- other stats -->
-        <button class="icon-btn positive" title="+Rebond" onclick="adjustStat('${team}',${i},'rebounds',1)">➕Rebond</button>
-        <button class="icon-btn neutral" title="-Rebond" onclick="adjustStat('${team}',${i},'rebounds',-1)">➖Rebond</button>
-        <button class="icon-btn positive" title="+Passe" onclick="adjustStat('${team}',${i},'assists',1)">➕Passe</button>
-        <button class="icon-btn neutral" title="-Passe" onclick="adjustStat('${team}',${i},'assists',-1)">➖Passe</button>
-        <button class="icon-btn positive" title="+Interception" onclick="adjustStat('${team}',${i},'interceptions',1)">➕Interception</button>
-        <button class="icon-btn neutral" title="-Interception" onclick="adjustStat('${team}',${i},'interceptions',-1)">➖Interception</button>
-        <button class="icon-btn negative" title="+Faute" onclick="adjustStat('${team}',${i},'fouls',1)">➕Faute</button>
-        <button class="icon-btn neutral" title="-Faute" onclick="adjustStat('${team}',${i},'fouls',-1)">➖Faute</button>
-
-        <button class="btn danger" style="margin-left:6px" onclick="removePlayer('${team}',${i})">Supprimer</button>
-      </div>
-    `;
-    container.appendChild(div);
-  });
-}
-
-/* ---------- Summary & Exports ---------- */
-function buildSummaryHTML(){
-  let html = `<div style="display:flex;gap:12px;flex-direction:column">`;
-  ['A','B'].forEach(team => {
-    const t = data['team'+team];
-    html += `<div style="background:#fff;padding:8px;border-radius:8px;color:#111"><h4>${t.name} — Score: ${data['score'+team]}</h4>`;
-    html += `<table style="width:100%;border-collapse:collapse"><thead><tr><th>N°</th><th>Nom</th><th>Pts</th><th>1pt</th><th>2pt</th><th>3pt</th><th>Reb</th><th>Passe</th><th>Interception</th><th>Faute</th></tr></thead><tbody>`;
-    t.players.forEach(p=>{
-      const att1 = p.shots1Made + p.shots1Miss; const pct1 = att1 ? Math.round(p.shots1Made/att1*100) : 0;
-      const att2 = p.shots2Made + p.shots2Miss; const pct2 = att2 ? Math.round(p.shots2Made/att2*100) : 0;
-      const att3 = p.shots3Made + p.shots3Miss; const pct3 = att3 ? Math.round(p.shots3Made/att3*100) : 0;
-      html += `<tr><td>${p.number}</td><td>${p.name}</td><td>${p.points}</td><td>${p.shots1Made}/${att1} (${pct1}%)</td><td>${p.shots2Made}/${att2} (${pct2}%)</td><td>${p.shots3Made}/${att3} (${pct3}%)</td><td>${p.rebounds}</td><td>${p.assists}</td><td>${p.interceptions}</td><td>${p.fouls}</td></tr>`;
-    });
-    html += `</tbody></table></div>`;
-  });
-  html += `</div>`;
-  return html;
-}
-document.getElementById('summaryBtn').addEventListener('click', ()=>{
-  document.getElementById('summaryContent').innerHTML = buildSummaryHTML();
-  document.getElementById('summaryCard').style.display = 'block';
-});
-
-/* CSV */
-document.getElementById('exportCsv').addEventListener('click', ()=>{
-  let rows = [['Team','Numero','Nom','Points','1_made','1_miss','2_made','2_miss','3_made','3_miss','Reb','Passe','Interception','Faute']];
-  ['A','B'].forEach(team=>{
-    data['team'+team].players.forEach(p=>{
-      rows.push([team,p.number,p.name,p.points,p.shots1Made,p.shots1Miss,p.shots2Made,p.shots2Miss,p.shots3Made,p.shots3Miss,p.rebounds,p.assists,p.interceptions,p.fouls]);
-    });
-  });
-  const csv = rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\r\n');
-  const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
-  saveAs(blob, `${data.teamA.name}_vs_${data.teamB.name}_stats.csv`);
-});
-
-/* Excel */
-document.getElementById('exportXlsx').addEventListener('click', ()=>{
-  const wb = XLSX.utils.book_new();
-  const wsA = XLSX.utils.json_to_sheet(data.teamA.players.map(p=>({
-    Numero:p.number, Nom:p.name, Points:p.points,
-    '1pt': `${p.shots1Made}/${p.shots1Made+p.shots1Miss}`,
-    '2pt': `${p.shots2Made}/${p.shots2Made+p.shots2Miss}`,
-    '3pt': `${p.shots3Made}/${p.shots3Made+p.shots3Miss}`,
-    Rebounds:p.rebounds, Assists:p.assists, Interceptions:p.interceptions, Fouls:p.fouls
-  })));
-  const wsB = XLSX.utils.json_to_sheet(data.teamB.players.map(p=>({
-    Numero:p.number, Nom:p.name, Points:p.points,
-    '1pt': `${p.shots1Made}/${p.shots1Made+p.shots1Miss}`,
-    '2pt': `${p.shots2Made}/${p.shots2Made+p.shots2Miss}`,
-    '3pt': `${p.shots3Made}/${p.shots3Made+p.shots3Miss}`,
-    Rebounds:p.rebounds, Assists:p.assists, Interceptions:p.interceptions, Fouls:p.fouls
-  })));
-  XLSX.utils.book_append_sheet(wb, wsA, 'EquipeA');
-  XLSX.utils.book_append_sheet(wb, wsB, 'EquipeB');
-  const wbout = XLSX.write(wb, {bookType:'xlsx', type:'array'});
-  saveAs(new Blob([wbout], {type:'application/octet-stream'}), `${data.teamA.name}_vs_${data.teamB.name}_stats.xlsx`);
-});
-
-/* PDF (simple, readable) */
-document.getElementById('exportPdf').addEventListener('click', async ()=>{
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF({unit:'pt', format:'a4'});
-  doc.setFontSize(14);
-  doc.text(`${data.teamA.name} vs ${data.teamB.name} — Résumé`, 40, 40);
-  const html = buildSummaryHTML();
-  const text = stripHTML(html);
-  doc.setFontSize(10);
-  // split text to lines to avoid overflow
-  const lines = doc.splitTextToSize(text, 520);
-  doc.text(lines, 40, 70);
-  doc.save(`${data.teamA.name}_vs_${data.teamB.name}_summary.pdf`);
-});
-function stripHTML(html){ return html.replace(/<[^>]+>/g,'').replace(/&nbsp;/g,' ').replace(/\s+/g,' ').trim(); }
-
-/* Reset */
-document.getElementById('resetBtn').addEventListener('click', ()=>{
-  if(!confirm('Commencer un nouveau match ? Toutes les données locales seront effacées.')) return;
-  data = { teamA: { name:'Équipe A', players:[] }, teamB: { name:'Équipe B', players:[] }, period:1, scoreA:0, scoreB:0 };
-  localStorage.removeItem(STORAGE_KEY);
-  renderAll(); save();
-});
-
-/* Team name changes */
-document.getElementById('teamAName').addEventListener('change',(e)=>{ data.teamA.name = e.target.value; save(); renderAll(); });
-document.getElementById('teamBName').addEventListener('change',(e)=>{ data.teamB.name = e.target.value; save(); renderAll(); });
-
-/* Manual save */
-document.getElementById('saveBtn').addEventListener('click', save);
-
-/* Init */
-load();
-renderAll();
+  console.log("GitHub Pages fonctionne !");
 </script>
+
 </body>
 </html>
+
 
 
 
